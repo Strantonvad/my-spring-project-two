@@ -12,19 +12,25 @@ import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
-@Data
+//@Data
 @Table(name = "roles")
 public class Role implements Serializable {
 
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @Column(name = "name", unique = true, nullable = false)
+    @Getter
+    @Setter
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    @Getter
+    @Setter
     private List<User> users;
 
     public Role(String name) {
