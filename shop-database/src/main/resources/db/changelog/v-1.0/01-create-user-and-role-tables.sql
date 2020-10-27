@@ -1,6 +1,6 @@
     create table roles (
        id bigint not null auto_increment,
-        name varchar(255) not null,
+        name varchar(253) not null,
         primary key (id)
     ) engine=InnoDB;
 GO
