@@ -6,10 +6,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import ru.geekbrains.persist.repo.UserRepository;
+import org.springframework.stereotype.Service;
+import ru.geekbrains.repo.UserRepository;
 
 import java.util.Collections;
 
+@Service
 public class UserAuthService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -25,7 +27,7 @@ public class UserAuthService implements UserDetailsService {
             .map(user -> new User(
                 user.getName(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRole()))))
+                Collections.singletonList(new SimpleGrantedAuthority("ADMIN"))))
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

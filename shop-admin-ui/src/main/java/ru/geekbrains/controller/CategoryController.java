@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.model.Category;
-import ru.geekbrains.persist.repo.CategoryRepository;
+import ru.geekbrains.repo.CategoryRepository;
 
 import java.util.List;
 

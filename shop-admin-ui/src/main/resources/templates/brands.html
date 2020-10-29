@@ -40,12 +40,12 @@
     <div th:replace="blocks/sidebar :: sidebar"></div>
 
     <div class="content p-4">
-        <h2 class="mb-4">Users</h2>
+        <h2 class="mb-4">Brands</h2>
 
         <div class="card mb-4">
 
             <div class="card-body">
-                <form class="form-group" th:action="@{/user/create}">
+                <form class="form-group" th:action="@{/brand/create}">
                     <button type="submit" class="btn btn-primary">Create new</button>
                 </form>
 
@@ -53,26 +53,21 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
-                        <th>E-mail</th>
-                        <th>Age</th>
+                        <th>Title</th>
                         <th class="actions">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user : ${users}">
-                        <th th:text="${user.id}">1</th>
-                        <td th:text="${user.name}">User login</td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.age}"></td>
-                        <td th:text="${user.getRole()}"></td>
+                    <tr th:each="brand : ${brands}">
+                        <th th:text="${brand.id}">1</th>
+                        <td th:text="${brand.title}">Brand title</td>
                         <td class="actions">
                             <a class="btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit"
-                               th:href="@{/user/{id}/edit(id=${user.id})}">
+                               th:href="@{/brand/{id}/edit(id=${brand.id})}">
                                 <i class="fa fa-fw fa-edit"></i>
                             </a>
                             <form class="d-inline" data-toggle="tooltip" title="Delete"
-                                  th:action="@{/user/{id}/delete(id = ${user.id})}" th:method="delete">
+                                  th:action="@{/brand/{id}/delete(id = ${brand.id})}" th:method="delete">
                                 <button class="btn btn-icon btn-pill btn-danger" data-toggle="tooltip" title="Delete">
                                     <i class="fa fa-fw fa-trash"></i>
                                 </button>

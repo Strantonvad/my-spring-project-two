@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.model.Product;
-import ru.geekbrains.model.User;
-import ru.geekbrains.persist.repo.BrandRepository;
-import ru.geekbrains.persist.repo.ProductRepository;
+import ru.geekbrains.repo.ProductRepository;
 
 import java.util.List;
 

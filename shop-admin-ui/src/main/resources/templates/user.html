@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootadmin.min.css}">
+
+    <title>BootAdmin</title>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
+    <a class="navbar-brand" href="#">Admin page</a>
+
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" id="current-user" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>
+                    <span id="cur_user" sec:authentication="principal.username">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <form th:action="@{/logout}" method="POST">
+                        <input type="submit" id="link-logout" class="dropdown-item" value="Logout"/>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="d-flex">
+    <div th:replace="blocks/sidebar :: sidebar"></div>
+
+    <div class="content p-4">
+        <h2 class="mb-4">Users</h2>
+
+        <div class="card mb-4">
+
+            <h2 class="mb-4" th:if="${edit}" >Edit user</h2>
+            <h2 class="mb-4" th:if="${create}" >Create user</h2>
+
+            <form th:object="${user}" method="post" th:action="@{/user}">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <input th:type="hidden" th:field="*{id}">
+                        <div class="form-group">
+                            <label for="name">User name</label>
+                            <input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Enter user name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input th:field="*{email}" type="text" class="form-control" id="email" placeholder="Enter user email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input th:field="*{age}" type="text" class="form-control" id="age" placeholder="Enter user age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="roles">User roles</label>
+                            <select multiple class="form-control" id="roles" th:field="*{roles}" required>
+                                <option th:each="role : ${roles}"
+                                        th:text="${role.name}"
+                                        th:value="${role.id}"
+                                        th:selected="${user.roles?.contains(role)}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/bootadmin.min.js}"></script>
+
+</body>
+</html>
