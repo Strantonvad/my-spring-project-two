@@ -1,4 +1,4 @@
-package ru.geekbrains.controller.repr;
+package ru.geekbrains.controller.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +19,7 @@ public class UserDto {
     private Set<Role> roles;
     private String email;
     private Integer age;
+    private String role;
 
     public UserDto(User user) {
         this.id = user.getId();
@@ -27,14 +28,6 @@ public class UserDto {
         this.roles = user.getRoles();
         this.email = user.getEmail();
         this.age = user.getAge();
-    }
-
-//    public void addRole(Role role) {
-//        roles.add(role);
-//        role.getUsers().add(this);
-//    }
-//
-    public String getRole() {
-        return roles.iterator().next().toString();
+        this.role = roles.iterator().next().toString();
     }
 }

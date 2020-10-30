@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,15 +25,17 @@ public class Product {
     @Column(length = 22, nullable = false)
     private BigDecimal cost;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="brand_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false)
     private Brand brand;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false)
     private Category category;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+    @JoinTable(name = "products_pictures",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "picture_id"))
+    private List<Picture> pictures;
 
     public Product(Long id, String title, BigDecimal cost) {
         this.id = id;

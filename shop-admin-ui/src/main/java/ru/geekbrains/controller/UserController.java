@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.geekbrains.controller.repr.UserDto;
+import ru.geekbrains.controller.dto.UserDto;
 import ru.geekbrains.repo.RoleRepository;
 import ru.geekbrains.service.UserService;
 

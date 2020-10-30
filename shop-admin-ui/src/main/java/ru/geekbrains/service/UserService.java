@@ -1,6 +1,6 @@
 package ru.geekbrains.service;
 
-import ru.geekbrains.controller.repr.UserDto;
+import ru.geekbrains.controller.dto.UserDto;
 
 import java.util.List;
 import java.util.Optional;
