@@ -28,7 +28,7 @@ public class Role implements Serializable {
     @Setter
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles")
     @Getter
     @Setter
     private List<User> users;
@@ -43,6 +43,11 @@ public class Role implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
         return name.equals(role.name);
+    }
+
+    @Override
+    public String toString() {
+        return name.replaceAll(".+_", "");
     }
 
     @Override
