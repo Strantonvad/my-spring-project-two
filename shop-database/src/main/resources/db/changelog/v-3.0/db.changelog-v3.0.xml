@@ -6,11 +6,11 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <changeSet id="21" author="str_anton">
+    <changeSet id="31" author="str_anton">
         <sqlFile dbms="mysql"
                  encoding="utf8"
                  endDelimiter="\nGO"
-                 path="03-create-picture-related-tables.sql"
+                 path="01-create-picture-related-tables.sql"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"/>
@@ -18,7 +18,26 @@
             <sqlFile dbms="mysql"
                      encoding="utf8"
                      endDelimiter="\nGO"
-                     path="03-drop-picture-related-tables.sql"
+                     path="01-drop-picture-related-tables.sql"
+                     relativeToChangelogFile="true"
+                     splitStatements="true"
+                     stripComments="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="32" author="str_anton">
+        <sqlFile dbms="mysql"
+                 encoding="utf8"
+                 endDelimiter="\nGO"
+                 path="02-alter-picture-data.sql"
+                 relativeToChangelogFile="true"
+                 splitStatements="true"
+                 stripComments="true"/>
+        <rollback>
+            <sqlFile dbms="mysql"
+                     encoding="utf8"
+                     endDelimiter="\nGO"
+                     path="02-drop-column-picture-data.sql"
                      relativeToChangelogFile="true"
                      splitStatements="true"
                      stripComments="true"/>

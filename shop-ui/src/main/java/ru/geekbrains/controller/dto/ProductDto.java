@@ -2,9 +2,9 @@ package ru.geekbrains.controller.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.model.Brand;
 import ru.geekbrains.model.Category;
+import ru.geekbrains.model.Picture;
 import ru.geekbrains.model.Product;
 
 import java.io.Serializable;
@@ -26,11 +26,7 @@ public class ProductDto implements Serializable {
 
     private Category category;
 
-    private List<PictureDto> pictures;
-
-    private MultipartFile[] newPictures;
-
-    public boolean hasPicture;
+    private List<Long> pictureIds;
 
     public ProductDto(Product product) {
         this.id = product.getId();
@@ -38,9 +34,7 @@ public class ProductDto implements Serializable {
         this.cost = product.getCost();
         this.category = product.getCategory();
         this.brand = product.getBrand();
-        this.pictures = product.getPictures().stream()
-            .map(PictureDto::new)
-            .collect(Collectors.toList());
-        this.hasPicture = false;
+        this.pictureIds = product.getPictures().stream()
+            .map(Picture::getId).collect(Collectors.toList());
     }
 }

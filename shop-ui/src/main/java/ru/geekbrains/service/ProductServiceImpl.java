@@ -4,17 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.controller.dto.ProductDto;
-import ru.geekbrains.model.Picture;
-import ru.geekbrains.model.PictureData;
-import ru.geekbrains.model.Product;
 import ru.geekbrains.repo.ProductRepository;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
