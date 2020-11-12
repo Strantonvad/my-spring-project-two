@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.model.Picture;
 import ru.geekbrains.repo.PictureRepository;
+import ru.geekbrains.service.PictureService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,21 +21,21 @@ public class PictureController {
 
     private static final Logger logger = LoggerFactory.getLogger(PictureController.class);
 
-    private final PictureRepository pictureRepository;
+    private final PictureService pictureService;
 
     @Autowired
-    public PictureController(PictureRepository pictureRepository) {
-        this.pictureRepository = pictureRepository;
+    public PictureController(PictureService pictureService) {
+        this.pictureService = pictureService;
     }
 
     @GetMapping("/{pictureId}")
     public void downloadProductPicture(@PathVariable("pictureId") Long pictureId, HttpServletResponse response) throws IOException {
         logger.info("Downloading picture: {}", pictureId);
 
-        Optional<Picture> picture = pictureRepository.findById(pictureId);
+        Optional<String> picture = pictureService.getPictureContentTypeById(pictureId);
         if (picture.isPresent()) {
-            response.setContentType(picture.get().getContentType());
-            response.getOutputStream().write(picture.get().getPictureData().getData());
+            response.setContentType(picture.get());
+            response.getOutputStream().write(pictureService.getPictureDataById(pictureId).get());
             return;
         }
         throw new NotFoundException();

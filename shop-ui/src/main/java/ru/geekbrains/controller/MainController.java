@@ -3,6 +3,7 @@ package ru.geekbrains.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.controller.dto.ProductDto;
 import ru.geekbrains.repo.BrandRepository;
@@ -37,12 +38,17 @@ public class MainController {
         model.addAttribute("brands", brandRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
 
-        productList.forEach(productDto -> {
-            productDto.hasPicture = productDto.getPictures() != null;
-        });
-
         model.addAttribute("products", productList);
 
         return "index";
+    }
+
+    @RequestMapping("/product/{id}")
+    public String productPage(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("brands", brandRepository.findAll());
+        model.addAttribute("product", productService.findById(id)
+            .orElseThrow(NotFoundException::new));
+        return "product";
     }
 }

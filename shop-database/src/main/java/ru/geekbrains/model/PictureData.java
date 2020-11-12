@@ -19,10 +19,17 @@ public class PictureData {
 
     @Lob
     @Type(type="org.hibernate.type.BinaryType") // для правильной работы PostgreSQL
-    @Column(name = "data", nullable = false, length = 33554430) // для правильной hibernate-валидации в MySQL
+    @Column(name = "data", length = 33554430) // для правильной hibernate-валидации в MySQL
     private byte[] data;
+
+    @Column
+    private String fileName;
 
     public PictureData(byte[] data) {
         this.data = data;
+    }
+
+    public PictureData(String fileName) {
+        this.fileName = fileName;
     }
 }
