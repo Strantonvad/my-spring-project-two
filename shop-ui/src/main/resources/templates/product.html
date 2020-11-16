@@ -123,7 +123,15 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                        <form th:action="@{/cart}" th:method="post">
+                            <input type="hidden" name="qty" value="1"/>
+                            <input type="hidden" name="productId" th:value="${product.id}">
+
+                            <button class="add-to-cart-btn">
+                                <i class="fa fa-shopping-cart"></i>
+                                Add to cart
+                            </button>
+                        </form>
                     </div>
 
                     <ul class="product-btns">
