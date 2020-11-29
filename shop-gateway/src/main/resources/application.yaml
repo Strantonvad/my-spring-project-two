@@ -1,0 +1,22 @@
+server:
+  port: 8000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: shop-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: picture-service
+          uri: lb://PICTURE-SERVICE
+          predicates:
+            - Path=/picture-service/picture/**
+          filters:
+            - StripPrefix=1

@@ -63,7 +63,7 @@
             <div class="col-md-5 col-md-push-2">
                 <div id="product-main-img">
                     <div class="product-preview">
-                        <img th:src="@{/picture/{pictureId}(pictureId=${product.pictureIds.get(0)})}" alt="">
+                        <img th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${product.pictureIds.get(0)}, pictureServiceUrl=${pictureServiceUrl})}" alt="">
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             <div class="col-md-2  col-md-pull-5">
                 <div id="product-imgs">
                     <div class="product-preview">
-                        <a th:each="picId : ${product.pictureIds}" href=""><img th:src="@{/picture/{pictureId}(pictureId=${picId})}" alt=""></a>
+                        <a th:each="picId : ${product.pictureIds}" href=""><img th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${picId}, pictureServiceUrl=${pictureServiceUrl})}" alt=""></a>
                     </div>
                 </div>
             </div>

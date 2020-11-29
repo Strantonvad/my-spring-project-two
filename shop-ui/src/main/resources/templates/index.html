@@ -116,7 +116,7 @@
                                     <!-- product -->
                                     <div class="product">
                                         <div class="product-img">
-                                            <img th:src="@{/picture/{pictureId}(pictureId=${product.pictureIds.get(0)})}" alt="">
+                                            <img th:src="@{{pictureServiceUrl}/picture/{pictureId}(pictureId=${product.pictureIds.get(0)}, pictureServiceUrl=${pictureServiceUrl})}" alt="">
                                             <div class="product-label">
                                                 <span class="sale">-30%</span>
                                                 <span class="new">NEW</span>

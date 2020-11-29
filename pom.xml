@@ -26,6 +26,10 @@
         <module>shop-admin-ui</module>
         <module>shop-ui</module>
         <module>shop-picture-service</module>
+        <module>picture-service-app</module>
+        <module>shop-config</module>
+        <module>shop-eureka</module>
+        <module>shop-gateway</module>
     </modules>
 
 </project>
