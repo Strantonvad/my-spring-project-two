@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Data
 @Table(name = "brands")
 public class Brand {
+    public Brand(String title) {
+        this.title = title;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

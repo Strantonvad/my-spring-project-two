@@ -34,6 +34,10 @@ public class User {
     @Column
     private Integer age;
 
+    public User(String name) {
+        this.name = name;
+    }
+
     public User(Long id, String name, String password) {
         this.id = id;
         this.name = name;
