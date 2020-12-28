@@ -28,6 +28,7 @@
         <module>shop-picture-service</module>
         <module>shop-stock-service</module>
         <module>spring-integration-test</module>
+        <module>shop-ui-tests</module>
     </modules>
 
 </project>
